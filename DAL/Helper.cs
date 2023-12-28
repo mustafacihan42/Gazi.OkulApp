@@ -22,7 +22,7 @@ namespace DAL
                         {
                             cmd.Parameters.AddRange(p);
                         }
-                        cn.Open();
+                        cn.Open()
                         return cmd.ExecuteNonQuery();
                     }
                 }
