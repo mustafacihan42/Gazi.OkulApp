@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace DAL
@@ -7,13 +8,24 @@ namespace DAL
     {
         SqlConnection cn;
         SqlCommand cmd;
-        string cstr=ConfigurationManager.
+        string cstr=ConfigurationManager.ConnectionStrings["cstr"].ConnectionString;
 
-        public int ExecuteNonQuery()
+        public int ExecuteNonQuery(string cmdtext, SqlParameter[] p = null)
         {
-            using (cn=new SqlConnection(""))
+            using (cn=new SqlConnection(cstr))
             {
-
+                using (cn = new SqlConnection(cstr))
+                {
+                    using (cmd = new SqlCommand(cmdtext, cn))
+                    {
+                        if (p != null)
+                        {
+                            cmd.Parameters.AddRange(p);
+                        }
+                        cn.Open();
+                        return cmd.ExecuteNonQuery();
+                    }
+                }
             }
         }
        
