@@ -1,4 +1,4 @@
-﻿using OkulApp.BLL;
+using OkulApp.BLL;
 using OkulApp.MODEL;
 using System;
 using System.Collections.Generic;
@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace Gazi.OkulApp
 {
-    public partial class frmOgrKayit : Form
+    public partial class frmOgretmenKayit : Form
     {
-        public frmOgrKayit()
+        public frmOgretmenKayit()
         {
             InitializeComponent();
         }
@@ -32,9 +32,9 @@ namespace Gazi.OkulApp
                 //ogrenci.ad = txtAd.Text.Trim();
                // ogrenci.soyad=txtSoyad.Text.Trim();
                 //ogrenci.numara=txtNumara.Text.Trim();
-                var obl = new OgrenciBl();
-                bool sonuc =obl.OgrenciEkle(new Ogrenci { ad=txtAd.Text.Trim
-                (),soyad=txtSoyad.Text.Trim(),numara=txtNumara.Text.Trim()});
+                var obl = new OgretmenBl();
+                bool sonuc =obl.OgretmenEkle(new Ogretmen { Ad=txtAd.Text.Trim
+                (),Soyad=txtSoyad.Text.Trim(),TCNumara=txtTCNumara.Text.Trim()});
                 MessageBox.Show(sonuc ? "Ekleme başarılı!" : "Ekleme başarısız!!");
 
             }
@@ -59,21 +59,6 @@ namespace Gazi.OkulApp
              }
         }
     }
-    interface ITransfer
-    {
-        int EFT(string aliciiban, string gondereniban, double tutar);
-        int Havale(string aliciiban, string gondereniban, double tutar,DateTime tarih);
-    }
-    class Transferislemleri : ITransfer
-    {
-        public int EFT(string aliciiban, string gondereniban, double tutar)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Havale(string aliciiban, string gondereniban, double tutar, DateTime tarih)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
 }
+
