@@ -1,12 +1,12 @@
-﻿using OkulApp.MODEL;
+using OkulApp.MODEL;
 using System;
 using System.Data.SqlClient;
 
 namespace OkulApp.BLL//business logic layer
 {
-    public class OgrenciBl
+    public class OgretmenBl
     {
-       public bool OgrenciEkle(Ogrenci ogr)
+       public bool OgretmenEkle(Ogretmen ogr)
         {
             SqlConnection cn = null;
             SqlCommand cmd = null;
@@ -14,12 +14,12 @@ namespace OkulApp.BLL//business logic layer
             {
                 using (cn = new SqlConnection(@"Data source=.\SQLEXPRESS;Initial Catalog=OkulDb;Integrated Security=true"))
                 {
-                    using (cmd = new SqlCommand($"Insert into tblOgrenciler (Ad,Soyad,Numara) values(@ad,@soyad,@numara)", cn))
+                    using (cmd = new SqlCommand($"Insert into tblOgretmen (Ad,Soyad,TCNumara) values(@ad,@soyad,@TCnumara)", cn))
                     {
                         SqlParameter[] p = {
-                    new SqlParameter("@ad",ogr.ad),
-                    new SqlParameter("@soyad",ogr.soyad),
-                    new SqlParameter("@numara",ogr.numara)
+                    new SqlParameter("@Ad",ogr.Ad),
+                    new SqlParameter("@Soyad",ogr.Soyad),
+                    new SqlParameter("@TCNumara",ogr.TCNumara)
                        };
                         cmd.Parameters.AddRange(p);
                         cn.Open();
